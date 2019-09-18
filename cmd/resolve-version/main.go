@@ -282,7 +282,8 @@ func parseObject(key string) (release, error) {
 			stage:    match[1],
 			platform: match[2],
 			version:  version,
-			url:      fmt.Sprintf("https://s3.amazonaws.com/%s/node/%s/%s/node-v%s-%s.tar.gz", "heroku-nodebin", match[1], match[2], match[3], match[2]),
+			// url:      fmt.Sprintf("https://s3.amazonaws.com/%s/node/%s/%s/node-v%s-%s.tar.gz", "heroku-nodebin", match[1], match[2], match[3], match[2]),
+			url:      fmt.Sprintf("https://npm.taobao.org/mirrors/node/v%s/node-v%s-linux-x64.tar.gz", match[3], match[3]),
 		}, nil
 	}
 
