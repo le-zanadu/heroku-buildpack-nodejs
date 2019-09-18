@@ -297,7 +297,8 @@ func parseObject(key string) (release, error) {
 			binary:   "yarn",
 			stage:    match[1],
 			platform: "",
-			url:      fmt.Sprintf("https://s3.amazonaws.com/heroku-nodebin/yarn/release/yarn-v%s.tar.gz", version),
+			// url:      fmt.Sprintf("https://s3.amazonaws.com/heroku-nodebin/yarn/release/yarn-v%s.tar.gz", version),
+			url:      fmt.Sprintf("https://npm.taobao.org/mirrors/yarn/%s/v%s.tar.gz", version, version),
 			version:  version,
 		}, nil
 	}
