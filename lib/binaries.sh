@@ -81,7 +81,7 @@ install_nodejs() {
   fi
 
   echo "Downloading and installing node $number..."
-  code=$(curl "$url" -L --silent --fail --retry 5 --retry-max-time 15 -o /tmp/node.tar.gz --write-out "%{http_code}")
+  code=$(curl "$url" -L -v --fail --retry 5 --retry-max-time 15 -o /tmp/node.tar.gz --write-out "%{http_code}")
   if [ "$code" != "200" ]; then
     echo "Unable to download node: $code" && false
   fi
