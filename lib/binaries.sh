@@ -47,7 +47,7 @@ install_yarn() {
   read -r number url < <(echo "$resolve_result")
 
   echo "Downloading and installing yarn ($number)..."
-  code=$(curl "$url" -L --silent --fail --retry 5 --retry-max-time 15 -o /tmp/yarn.tar.gz --write-out "%{http_code}")
+  code=$(curl "$url" -L --fail --retry 5 --retry-max-time 15 -o /tmp/yarn.tar.gz --write-out "%{http_code}")
   if [ "$code" != "200" ]; then
     echo "Unable to download yarn: $code" && false
   fi
@@ -55,10 +55,11 @@ install_yarn() {
   mkdir -p "$dir"
   # https://github.com/yarnpkg/yarn/issues/770
   if tar --version | grep -q 'gnu'; then
-    tar xzf /tmp/yarn.tar.gz -C "$dir" --strip 1 --warning=no-unknown-keyword
+    tar vxzf /tmp/yarn.tar.gz -C "$dir" --strip 1 --warning=no-unknown-keyword
   else
-    tar xzf /tmp/yarn.tar.gz -C "$dir" --strip 1
+    tar xvzf /tmp/yarn.tar.gz -C "$dir" --strip 1
   fi
+
   chmod +x "$dir"/bin/*
   echo "Installed yarn $(yarn --version)"
 }
@@ -81,7 +82,7 @@ install_nodejs() {
   fi
 
   echo "Downloading and installing node $number..."
-  code=$(curl "$url" -L -v --fail --retry 5 --retry-max-time 15 -o /tmp/node.tar.gz --write-out "%{http_code}")
+  code=$(curl "$url" -L --fail --retry 5 --retry-max-time 15 -o /tmp/node.tar.gz --write-out "%{http_code}")
   if [ "$code" != "200" ]; then
     echo "Unable to download node: $code" && false
   fi
